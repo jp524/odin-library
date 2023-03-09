@@ -58,7 +58,7 @@ function displayBook(element, index) {
 
 function displayLibrary() {
   myLibrary.forEach((element, index) => {
-      displayBook(element, index)
+    displayBook(element, index);
   });
 }
 
@@ -70,14 +70,19 @@ function displayForm() {
 
 newBtn.addEventListener('click', () => {
   displayForm();
-})
+});
 
 submitBtn.addEventListener('click', (event) => {
   event.preventDefault();
-  addBookToLibrary(form.title.value, form.author.value, form.pages.value, form.read.value);
+  addBookToLibrary(
+    form.title.value,
+    form.author.value,
+    form.pages.value,
+    form.read.value
+  );
   const newBookIndex = myLibrary.length - 1;
   displayBook(myLibrary[newBookIndex], newBookIndex);
-})
+});
 
 const deleteBtns = document.querySelectorAll('.delete-btn');
 
@@ -85,8 +90,8 @@ deleteBtns.forEach((button) => {
   button.addEventListener('click', () => {
     const book = document.getElementById(button.id);
     container.removeChild(book);
-  })
-})
+  });
+});
 
 const readBtns = document.querySelectorAll('.read-btn');
 
@@ -96,5 +101,5 @@ readBtns.forEach((button) => {
     book.read = !book.read;
     const info = document.querySelector(`.info-${button.id}`);
     info.textContent = book.info();
-  })
-})
+  });
+});
