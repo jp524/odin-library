@@ -21,14 +21,15 @@ addBookToLibrary('The Hobbit', 'J.R.R. Tolkien', 295, false);
 addBookToLibrary(
   'Harry Potter and the Chamber of Secrets',
   'J.K. Rowling',
-  305,
+  251,
   true
 );
-addBookToLibrary('Twilight', 'Stephanie Meyer', 500, true);
+addBookToLibrary('A Tale of Two Cities', 'Charles Dickens', 344, true);
+addBookToLibrary('Au Bonheur des Dames', 'Émile Zola', 384, true);
 
 // console.log(myLibrary);
 
-const container = document.querySelector('#container');
+const books = document.querySelector('#books');
 const form = document.querySelector('form');
 const newBtn = document.querySelector('.new-btn');
 const submitBtn = document.querySelector('.submit-btn');
@@ -52,7 +53,7 @@ function displayBook(element, index) {
   readBtn.classList.add('read-btn');
   readBtn.id = index;
 
-  container.appendChild(book);
+  books.appendChild(book);
   book.append(info, deleteBtn, readBtn);
 }
 
@@ -89,7 +90,7 @@ const deleteBtns = document.querySelectorAll('.delete-btn');
 deleteBtns.forEach((button) => {
   button.addEventListener('click', () => {
     const book = document.getElementById(button.id);
-    container.removeChild(book);
+    books.removeChild(book);
   });
 });
 
