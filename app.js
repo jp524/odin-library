@@ -47,11 +47,18 @@ function displayBook(element, index) {
   deleteBtn.textContent = 'Delete';
   deleteBtn.classList.add('delete-btn');
   deleteBtn.id = index;
+  deleteBtn.addEventListener('click', () => {
+    books.removeChild(book);
+  })
 
   const readBtn = document.createElement('button');
   readBtn.textContent = 'Change read status';
   readBtn.classList.add('read-btn');
   readBtn.id = index;
+  readBtn.addEventListener('click', () => {
+    element.read = !element.read;
+    info.textContent = element.info();
+  });
 
   books.appendChild(book);
   book.append(info, deleteBtn, readBtn);
@@ -83,24 +90,4 @@ submitBtn.addEventListener('click', (event) => {
   );
   const newBookIndex = myLibrary.length - 1;
   displayBook(myLibrary[newBookIndex], newBookIndex);
-});
-
-const deleteBtns = document.querySelectorAll('.delete-btn');
-
-deleteBtns.forEach((button) => {
-  button.addEventListener('click', () => {
-    const book = document.getElementById(button.id);
-    books.removeChild(book);
-  });
-});
-
-const readBtns = document.querySelectorAll('.read-btn');
-
-readBtns.forEach((button) => {
-  button.addEventListener('click', () => {
-    const book = myLibrary[`${button.id}`];
-    book.read = !book.read;
-    const info = document.querySelector(`.info-${button.id}`);
-    info.textContent = book.info();
-  });
 });
