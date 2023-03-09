@@ -26,4 +26,23 @@ addBookToLibrary(
 );
 addBookToLibrary('Twilight', 'Stephanie Meyer', 500, true);
 
-console.log(myLibrary);
+// console.log(myLibrary);
+
+const container = document.querySelector('#container');
+
+function displayLibrary() {
+  myLibrary.forEach((element, index) => {
+      const book = document.createElement('div');
+      book.classList.add('book');
+      book.id = index;
+    
+      const info = document.createElement('div');
+      info.classList.add('info');
+      info.textContent = element.info();
+    
+      container.appendChild(book);
+      book.append(info);
+  });
+}
+
+displayLibrary();
