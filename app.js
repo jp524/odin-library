@@ -39,7 +39,7 @@ function displayBook(element, index) {
   book.id = index;
 
   const info = document.createElement('div');
-  info.classList.add('info');
+  info.classList.add(`info-${index}`);
   info.textContent = element.info();
 
   const deleteBtn = document.createElement('button');
@@ -47,8 +47,13 @@ function displayBook(element, index) {
   deleteBtn.classList.add('delete-btn');
   deleteBtn.id = index;
 
+  const readBtn = document.createElement('button');
+  readBtn.textContent = 'Change read status';
+  readBtn.classList.add('read-btn');
+  readBtn.id = index;
+
   container.appendChild(book);
-  book.append(info, deleteBtn);
+  book.append(info, deleteBtn, readBtn);
 }
 
 function displayLibrary() {
@@ -80,5 +85,16 @@ deleteBtns.forEach((button) => {
   button.addEventListener('click', () => {
     const book = document.getElementById(button.id);
     container.removeChild(book);
+  })
+})
+
+const readBtns = document.querySelectorAll('.read-btn');
+
+readBtns.forEach((button) => {
+  button.addEventListener('click', () => {
+    const book = myLibrary[`${button.id}`];
+    book.read = !book.read;
+    const info = document.querySelector(`.info-${button.id}`);
+    info.textContent = book.info();
   })
 })
