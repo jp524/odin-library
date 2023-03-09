@@ -81,15 +81,18 @@ newBtn.addEventListener('click', () => {
 });
 
 submitBtn.addEventListener('click', (event) => {
-  form.checkValidity();
-  form.reportValidity();
-  event.preventDefault();
-  addBookToLibrary(
-    form.title.value,
-    form.author.value,
-    form.pages.value,
-    form.read.value
-  );
-  const newBookIndex = myLibrary.length - 1;
-  displayBook(myLibrary[newBookIndex], newBookIndex);
+  if (form.checkValidity()) {
+    event.preventDefault();
+    addBookToLibrary(
+      form.title.value,
+      form.author.value,
+      form.pages.value,
+      form.read.value
+    );
+    const newBookIndex = myLibrary.length - 1;
+    displayBook(myLibrary[newBookIndex], newBookIndex);
+  } else {
+    form.reportValidity();
+    event.preventDefault();
+  }
 });
