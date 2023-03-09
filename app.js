@@ -42,8 +42,13 @@ function displayBook(element, index) {
   info.classList.add('info');
   info.textContent = element.info();
 
+  const deleteBtn = document.createElement('button');
+  deleteBtn.textContent = 'Delete';
+  deleteBtn.classList.add('delete-btn');
+  deleteBtn.id = index;
+
   container.appendChild(book);
-  book.append(info);
+  book.append(info, deleteBtn);
 }
 
 function displayLibrary() {
@@ -67,4 +72,13 @@ submitBtn.addEventListener('click', (event) => {
   addBookToLibrary(form.title.value, form.author.value, form.pages.value, form.read.value);
   const newBookIndex = myLibrary.length - 1;
   displayBook(myLibrary[newBookIndex], newBookIndex);
+})
+
+const deleteBtns = document.querySelectorAll('.delete-btn');
+
+deleteBtns.forEach((button) => {
+  button.addEventListener('click', () => {
+    const book = document.getElementById(button.id);
+    container.removeChild(book);
+  })
 })
