@@ -49,7 +49,7 @@ function displayBook(element, index) {
   deleteBtn.id = index;
   deleteBtn.addEventListener('click', () => {
     books.removeChild(book);
-  })
+  });
 
   const readBtn = document.createElement('button');
   readBtn.textContent = 'Change read status';
@@ -81,6 +81,8 @@ newBtn.addEventListener('click', () => {
 });
 
 submitBtn.addEventListener('click', (event) => {
+  form.checkValidity();
+  form.reportValidity();
   event.preventDefault();
   addBookToLibrary(
     form.title.value,
