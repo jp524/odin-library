@@ -91,6 +91,10 @@ function displayForm() {
   form.classList.remove('hidden');
 }
 
+function clearForm() {
+  form.reset()
+}
+
 newBtn.addEventListener('click', () => {
   displayForm();
 });
@@ -106,6 +110,7 @@ submitBtn.addEventListener('click', (event) => {
     );
     const newBookIndex = myLibrary.length - 1;
     displayBook(myLibrary[newBookIndex], newBookIndex);
+    clearForm();
   } else {
     form.reportValidity();
     event.preventDefault();
